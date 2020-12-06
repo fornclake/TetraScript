@@ -1,0 +1,30 @@
+{
+    "automappingRulesFile": "",
+    "commands": [
+        {
+            "arguments": "--export-pack \"PCK\" \"D:\\Godot Engine\\!Exports\\TetraForce.pck\"",
+            "command": "\"D:/Godot Engine/Godot_v3.2.3-stable_win64.exe\"",
+            "enabled": true,
+            "name": "Generate pck",
+            "saveBeforeExecute": true,
+            "shortcut": null,
+            "showOutput": true,
+            "workingDirectory": "D:/Godot Engine/TetraScript"
+        },
+        {
+            "arguments": "%mapfile",
+            "command": "\"D:/Godot Engine/TetraScript/export-and-run.bat\"",
+            "enabled": true,
+            "name": "Run",
+            "saveBeforeExecute": true,
+            "shortcut": "F5",
+            "showOutput": true,
+            "workingDirectory": "D:/Godot Engine/TetraScript"
+        }
+    ],
+    "extensionsPath": "extensions",
+    "folders": [
+        "."
+    ],
+    "objectTypesFile": ""
+}

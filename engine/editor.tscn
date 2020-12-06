@@ -1,0 +1,185 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://engine/editor.gd" type="Script" id=1]
+
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Viewport")
+
+[node name="editor" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 256, 144 )
+render_target_v_flip = true
+
+[node name="Camera2D" type="Camera2D" parent="Viewport"]
+offset = Vector2( 128, 72 )
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="hsplit" type="HSplitContainer" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 1008.0
+margin_bottom = 584.0
+split_offset = 32
+
+[node name="scrollviews" type="TabContainer" parent="hsplit"]
+margin_right = 416.0
+margin_bottom = 568.0
+rect_min_size = Vector2( 384, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Script View" type="VSplitContainer" parent="hsplit/scrollviews"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="text" type="TextEdit" parent="hsplit/scrollviews/Script View"]
+margin_right = 408.0
+margin_bottom = 472.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bottom" type="MarginContainer" parent="hsplit/scrollviews/Script View"]
+margin_top = 484.0
+margin_right = 408.0
+margin_bottom = 532.0
+rect_min_size = Vector2( 0, 48 )
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="buttons" type="HBoxContainer" parent="hsplit/scrollviews/Script View/bottom"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 400.0
+margin_bottom = 40.0
+custom_constants/separation = 32
+alignment = 1
+
+[node name="parse" type="Button" parent="hsplit/scrollviews/Script View/bottom/buttons"]
+margin_left = 67.0
+margin_right = 131.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 64, 32 )
+text = "Parse"
+
+[node name="load" type="Button" parent="hsplit/scrollviews/Script View/bottom/buttons"]
+margin_left = 163.0
+margin_right = 227.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 64, 32 )
+text = "Load"
+
+[node name="user_dir" type="Button" parent="hsplit/scrollviews/Script View/bottom/buttons"]
+margin_left = 259.0
+margin_right = 324.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 64, 32 )
+text = "User Dir"
+
+[node name="Object View" type="TextEdit" parent="hsplit/scrollviews"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="viewer" type="PanelContainer" parent="hsplit"]
+margin_left = 428.0
+margin_right = 992.0
+margin_bottom = 568.0
+
+[node name="objects_scroll" type="ScrollContainer" parent="hsplit/viewer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 557.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 0, 32 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="objects" type="HBoxContainer" parent="hsplit/viewer/objects_scroll"]
+margin_right = 550.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="hsplit/viewer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 557.0
+margin_bottom = 561.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 16
+custom_constants/margin_top = 40
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 40
+
+[node name="TextureRect" type="TextureRect" parent="hsplit/viewer/MarginContainer"]
+margin_left = 16.0
+margin_top = 40.0
+margin_right = 534.0
+margin_bottom = 514.0
+rect_min_size = Vector2( 256, 144 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="states_scroll" type="ScrollContainer" parent="hsplit/viewer"]
+margin_left = 7.0
+margin_top = 529.0
+margin_right = 557.0
+margin_bottom = 561.0
+rect_min_size = Vector2( 0, 32 )
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[node name="states" type="HBoxContainer" parent="hsplit/viewer/states_scroll"]
+margin_right = 550.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="load_dialog" type="FileDialog" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 1008.0
+margin_bottom = 584.0
+window_title = "Open a File"
+mode = 0
+access = 1
+current_dir = "user://"
+current_path = "user://"
+[connection signal="pressed" from="hsplit/scrollviews/Script View/bottom/buttons/parse" to="." method="_on_parse_pressed"]
+[connection signal="pressed" from="hsplit/scrollviews/Script View/bottom/buttons/load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="hsplit/scrollviews/Script View/bottom/buttons/user_dir" to="." method="_on_user_dir_pressed"]
+[connection signal="file_selected" from="load_dialog" to="." method="_on_load_dialog_file_selected"]

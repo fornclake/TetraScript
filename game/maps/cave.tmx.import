@@ -1,0 +1,22 @@
+[remap]
+
+importer="vnen.tiled_importer"
+type="PackedScene"
+path="res://.import/cave.tmx-e31e4a9a79d42a60a277d3e5ba4cef6a.scn"
+
+[deps]
+
+source_file="res://game/maps/cave.tmx"
+dest_files=[ "res://.import/cave.tmx-e31e4a9a79d42a60a277d3e5ba4cef6a.scn" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=true
+uv_clip=true
+image_flags=7
+collision_layer=1
+embed_internal_images=false
+save_tiled_properties=true
+add_background=true
+post_import_script="res://engine/tiled.gd"

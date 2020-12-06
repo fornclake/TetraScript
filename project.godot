@@ -1,0 +1,88 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "Constructor",
+"language": "GDScript",
+"path": "res://engine/constructor.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://engine/objects/entity.gd"
+}, {
+"base": "Node",
+"class": "Helper",
+"language": "GDScript",
+"path": "res://engine/helper.gd"
+}, {
+"base": "Node",
+"class": "Parser",
+"language": "GDScript",
+"path": "res://engine/parser.gd"
+} ]
+_global_script_class_icons={
+"Constructor": "",
+"Entity": "",
+"Helper": "",
+"Parser": ""
+}
+
+[application]
+
+config/name="TetraScript"
+run/main_scene="res://main.tscn"
+
+[display]
+
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "vnen.tiled_importer" )
+
+[importer_defaults]
+
+vnen.tiled_importer={
+"add_background": true,
+"collision_layer": 1,
+"custom_properties": true,
+"embed_internal_images": false,
+"image_flags": 7,
+"post_import_script": "res://engine/tiled.gd",
+"save_tiled_properties": true,
+"tile_metadata": true,
+"uv_clip": true
+}
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
+
+[tiled_importer]
+
+enable_json_format=true
