@@ -2,12 +2,12 @@
 
 importer="vnen.tiled_importer"
 type="PackedScene"
-path="res://.import/cave.tmx-e31e4a9a79d42a60a277d3e5ba4cef6a.scn"
+path="res://.import/test.tmx-ff3f06ea28cc71cadfa0020913bdeede.scn"
 
 [deps]
 
-source_file="res://game/maps/cave.tmx"
-dest_files=[ "res://.import/cave.tmx-e31e4a9a79d42a60a277d3e5ba4cef6a.scn" ]
+source_file="res://game/maps/test.tmx"
+dest_files=[ "res://.import/test.tmx-ff3f06ea28cc71cadfa0020913bdeede.scn" ]
 
 [params]
 

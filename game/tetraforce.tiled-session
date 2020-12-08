@@ -5,9 +5,9 @@
     },
     "activeFile": "maps/cave.tmx",
     "expandedProjectPaths": [
-        "maps",
         "tiled",
-        "."
+        ".",
+        "maps"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -160,8 +160,16 @@
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 284,
+                "x": 240.66666666666669,
                 "y": 175.33333333333331
+            }
+        },
+        "maps/test.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 337,
+                "y": 244
             }
         },
         "tiled/cave_tileset.tsx": {
@@ -170,7 +178,7 @@
             "scaleInEditor": 3
         }
     },
-    "map.fixedSize": false,
+    "map.fixedSize": true,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
@@ -180,17 +188,17 @@
     "project": "tetraforce.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "D:/Godot Engine/TetraForce/maps/dungeon.tmx",
         "maps/cave.tmx",
+        "maps/test.tmx",
         "tiled/cave_tileset.tsx",
         "D:/Godot Engine/TetraForce/maps/dungeon1.tmx",
-        "D:/Godot Engine/TetraForce/maps/dungeon.tmx",
         "D:/Godot Engine/TetraForce/maps/shoreside.tmx",
         "D:/Godot Engine/TetraForce/maps/overworld_caves/shrine_cave.tmx",
         "D:/Godot Engine/TetraForce/tiled/objects.tsx",
         "D:/Godot Engine/TetraForce/maps/overworld.tmx",
         "D:/Godot Engine/TetraForce/maps/shrine.tmx",
         "F:/Godot/old/terra-labyrinth/areas/RuinsTest/Demo.tmx",
-        "D:/Godot Engine/TetraForce/maps/overworld_caves/overworld_caves.tmx",
-        "D:/Godot Engine/TetraForce/maps/overworld_caves/farm_cave.tmx"
+        "D:/Godot Engine/TetraForce/maps/overworld_caves/overworld_caves.tmx"
     ]
 }

@@ -2,7 +2,6 @@
 
 [ext_resource path="res://engine/editor.gd" type="Script" id=1]
 
-
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
 
@@ -78,22 +77,29 @@ custom_constants/separation = 32
 alignment = 1
 
 [node name="parse" type="Button" parent="hsplit/scrollviews/Script View/bottom/buttons"]
-margin_left = 67.0
-margin_right = 131.0
+margin_left = 19.0
+margin_right = 83.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 64, 32 )
 text = "Parse"
 
+[node name="save" type="Button" parent="hsplit/scrollviews/Script View/bottom/buttons"]
+margin_left = 115.0
+margin_right = 179.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 64, 32 )
+text = "Save"
+
 [node name="load" type="Button" parent="hsplit/scrollviews/Script View/bottom/buttons"]
-margin_left = 163.0
-margin_right = 227.0
+margin_left = 211.0
+margin_right = 275.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 64, 32 )
 text = "Load"
 
 [node name="user_dir" type="Button" parent="hsplit/scrollviews/Script View/bottom/buttons"]
-margin_left = 259.0
-margin_right = 324.0
+margin_left = 307.0
+margin_right = 372.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 64, 32 )
 text = "User Dir"
@@ -147,6 +153,13 @@ margin_top = 40.0
 margin_right = 534.0
 margin_bottom = 514.0
 rect_min_size = Vector2( 256, 144 )
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
+focus_mode = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = SubResource( 1 )
@@ -176,10 +189,19 @@ margin_right = 1008.0
 margin_bottom = 584.0
 window_title = "Open a File"
 mode = 0
-access = 1
-current_dir = "user://"
-current_path = "user://"
+filters = PoolStringArray( "*.txt" )
+current_dir = "res://game"
+current_path = "res://game/"
+
+[node name="save_dialog" type="FileDialog" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 1008.0
+margin_bottom = 584.0
+filters = PoolStringArray( "*.txt" )
 [connection signal="pressed" from="hsplit/scrollviews/Script View/bottom/buttons/parse" to="." method="_on_parse_pressed"]
+[connection signal="pressed" from="hsplit/scrollviews/Script View/bottom/buttons/save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="hsplit/scrollviews/Script View/bottom/buttons/load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="hsplit/scrollviews/Script View/bottom/buttons/user_dir" to="." method="_on_user_dir_pressed"]
 [connection signal="file_selected" from="load_dialog" to="." method="_on_load_dialog_file_selected"]
+[connection signal="file_selected" from="save_dialog" to="." method="_on_save_dialog_file_selected"]

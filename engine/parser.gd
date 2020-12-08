@@ -2,17 +2,19 @@ extends Node
 
 class_name Parser
 
-const OBJECT_TYPES = ["entity"]
+const OBJECT_TYPES = ["entity", "enemy", "player", "weapon"]
 
 func parse_objects(t):
 	var objects = []
 	
 	for type in OBJECT_TYPES:
-		var last_line = 0
+		var last_line = t.find(type)
+		#prints(type, last_line)
 		for i in t.count(type):
 			var right = t.right(last_line)
 			var split = right.split(" ", false, 3)
-			if split[2].begins_with("{"):
+			if split[0] == type && split[2].begins_with("{"):
+				print(split[0])
 				objects.append(parse_object(right))
 			last_line = t.find(type, last_line+1)
 	

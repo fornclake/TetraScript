@@ -1,0 +1,103 @@
+player Player {
+	Health 3
+	Speed 70
+	Damage 0
+	Size 4.5, 6
+	SpriteSheet "objects/key", 6, 8
+	States {
+		Spawn:
+			trigger timer(0.01) state Default
+		Default:
+			default()
+	}
+	Animations {
+		idleDown:
+			1 0
+		idleSide:
+			3 0
+		idleUp:
+			5 0
+		walkDown:
+			0 0.16
+			1 0.16
+			loop
+		walkSide:
+			2 0.16
+			3 0.16
+			loop
+		walkUp:
+			4 0.16
+			5 0.16
+	}
+}
+
+enemy Stalfaux {
+	Health 0.5
+	Speed 40
+	Damage 0.5
+	Size 4.5, 6
+	SpriteSheet "objects/stalfaux", 6, 1
+	States {
+		Spawn:
+			anim_play("inanimate")
+			trigger object_entered(64,player) state Animate
+		Animate:
+			anim_play("animate")
+			trigger anim_finished() state Active
+		Active:
+			anim_play("walk")
+			wander(0.25)
+			trigger timer(1) state BeginThrow
+			trigger object_exited(64,player) state UnAnimate
+		UnAnimate:
+			anim_play("unanimate")
+			trigger anim_finished() state Spawn
+		BeginThrow:
+			anim_play("throw")
+			trigger anim_finished() state Throw
+		Throw:
+			use_weapon("Bone")
+			trigger timer(0.01) state Active
+	}
+	Animations {
+		inanimate:
+			0 0
+			loop
+		animate:
+			0 0.16
+			1 0.16
+		unanimate:
+			1 0.16
+			0 0.16
+		walk:
+			2 0.16
+			3 0.16
+			loop
+		throw:
+			4 0.16
+			5 0.16
+	}
+}
+
+
+weapon Bone {
+	SpriteSheet "objects/bone", 6, 1
+	States {
+		Spawn:
+			anim_play("spin")
+	}
+	Animations {
+		spin:
+			2 0.2
+			3 0.2
+			4 0.2
+			5 0.2
+			loop
+	}
+}
+
+
+
+
+
+

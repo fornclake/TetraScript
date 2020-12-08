@@ -1,0 +1,144 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://engine/state_machine.gd" type="Script" id=1]
+[ext_resource path="res://game/objects/key.png" type="Texture" id=2]
+[ext_resource path="res://engine/objects/player.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 4.5
+height = 6.0
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.32
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.16 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.32
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.16 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 2, 3 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.32
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.16 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 4, 5 ]
+}
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 3 )
+health = 3.0
+speed = 70.0
+damage = 0.0
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+vframes = 8
+hframes = 6
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/idleDown = SubResource( 2 )
+anims/idleSide = SubResource( 3 )
+anims/idleUp = SubResource( 4 )
+anims/walkDown = SubResource( 5 )
+anims/walkSide = SubResource( 6 )
+anims/walkUp = SubResource( 7 )
+
+[node name="state_machine" type="Node" parent="."]
+script = ExtResource( 1 )
+states = {
+"Default": {
+"actions": [ [ "default", [  ] ] ],
+"triggers": [  ]
+},
+"Spawn": {
+"actions": [  ],
+"triggers": [ [ "timer", PoolStringArray( "0.01" ), "Default" ] ]
+}
+}
+
+[node name="timer_Spawn" type="Timer" parent="."]
+wait_time = 0.01
+one_shot = true
+
+[node name="camera" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.5 )

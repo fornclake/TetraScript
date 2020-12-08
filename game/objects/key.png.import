@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cave_tileset.png-ea6e9cc27b0413414dcf1b715660e66d.stex"
+path="res://.import/key.png-0f95d143e0dfac18420b51d4e4b63e77.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/tiled/cave_tileset.png"
-dest_files=[ "res://.import/cave_tileset.png-ea6e9cc27b0413414dcf1b715660e66d.stex" ]
+source_file="res://game/objects/key.png"
+dest_files=[ "res://.import/key.png-0f95d143e0dfac18420b51d4e4b63e77.stex" ]
 
 [params]
 

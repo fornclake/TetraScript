@@ -19,8 +19,6 @@ func post_import(imported_scene):
 				spawn_object(object)
 			child.free()
 	
-	print("HELLO")
-	
 	return scene
 
 func import_tilemap(tilemap):
@@ -35,6 +33,7 @@ func import_tilemap(tilemap):
 		replace_tilemap(tilemap, tilemap.get_meta("replace"))
 
 func spawn_object(object):
+	print("Spawning object ", object)
 	if object.has_meta("path"):
 		var path = object.get_meta("path")
 		var node = load(str("res://game/cache/", path, ".tscn")).instance()

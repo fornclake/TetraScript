@@ -35,4 +35,4 @@ static func clear_directory(path):
 	dir.list_dir_end()
 	
 	for file in files:
-		print(file)
+		dir.remove(file)
