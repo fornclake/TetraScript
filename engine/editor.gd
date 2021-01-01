@@ -35,7 +35,7 @@ func spawn_object(dict):
 	for state in dict.states:
 		var new_button = Button.new()
 		new_button.text = state
-		new_button.connect("pressed", object.state_machine, "change_state", [state])
+		new_button.connect("pressed", object, "change_state", [state])
 		states.add_child(new_button)
 
 func _on_save_pressed():

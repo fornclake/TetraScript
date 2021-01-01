@@ -5,7 +5,8 @@ func _init():
 	var temp_def = helper.load_text("res://game/objects/objects.txt")
 	var parser = Parser.new()
 	var dicts = parser.parse_objects(temp_def)
-	print(dicts)
+	
+	helper.clear_directory("res://game/cache/")
 	
 	var constructor = Constructor.new()
 	for dict in dicts:

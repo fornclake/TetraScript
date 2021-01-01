@@ -262,13 +262,13 @@
    </properties>
    <point/>
   </object>
-  <object id="13" x="80" y="160">
+  <object id="13" x="80" y="144">
    <properties>
-    <property name="path" value="stalfaux"/>
+    <property name="path" value="smashroom"/>
    </properties>
    <point/>
   </object>
-  <object id="14" x="160" y="288">
+  <object id="14" x="176" y="288">
    <properties>
     <property name="path" value="stalfaux"/>
    </properties>

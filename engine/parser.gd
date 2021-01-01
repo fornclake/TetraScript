@@ -9,12 +9,10 @@ func parse_objects(t):
 	
 	for type in OBJECT_TYPES:
 		var last_line = t.find(type)
-		#prints(type, last_line)
 		for i in t.count(type):
 			var right = t.right(last_line)
 			var split = right.split(" ", false, 3)
 			if split[0] == type && split[2].begins_with("{"):
-				print(split[0])
 				objects.append(parse_object(right))
 			last_line = t.find(type, last_line+1)
 	
@@ -28,13 +26,17 @@ func parse_object(t):
 	var properties = {}
 	var states = {}
 	var animations = {}
+	var flags = []
 	
 	var p_text = obj_text.left(obj_text.find("States"))
 	p_text = p_text.strip_edges().replace(",", "").split("\n")
 	for p in p_text:
 		var p_arr = split_text(p)
-		properties[p_arr[0]] = p_arr
-		properties[p_arr[0]].pop_front()
+		if p_arr[0].begins_with("+"):
+			flags.append(p_arr[0].right(p_arr[0].find("+")+1))
+		else:
+			properties[p_arr[0]] = p_arr
+			properties[p_arr[0]].pop_front()
 	
 	var s_text = find_bracket(obj_text.right(obj_text.find("States")))
 	s_text = s_text.strip_edges().split("\n")
@@ -53,19 +55,17 @@ func parse_object(t):
 				states[current_state].actions.append([s_arr[0].left(s_arr[0].find("(")), get_parameters(action)])
 	
 	var a_text = find_bracket(obj_text.right(obj_text.find("Animations")))
-	a_text = a_text.strip_edges().split("\n")
+	a_text = a_text.strip_edges().replace(",", "\n").split("\n")
 	var current_animation = ""
 	for a in a_text:
 		var a_arr = split_text(a)
 		if a_arr[0].ends_with(":"):
 			current_animation = a_arr[0].rstrip(":")
 			animations[current_animation] = []
-		elif a_arr[0] == "loop":
-			animations[current_animation].append(a_arr[0])
 		else:
 			animations[current_animation].append([a_arr])
 	
-	return {"type":obj_type, "name":obj_name, "properties":properties, "states":states, "animations":animations}
+	return {"type":obj_type, "name":obj_name, "properties":properties, "states":states, "animations":animations, "flags":flags}
 
 func split_text(t):
 	var psa = t.strip_edges().split(" ")

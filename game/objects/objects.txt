@@ -6,9 +6,11 @@ player Player {
 	SpriteSheet "objects/key", 6, 8
 	States {
 		Spawn:
-			trigger timer(0.01) state Default
+			change_state("Default")
 		Default:
 			default()
+		Swing:
+			swing()
 	}
 	Animations {
 		idleDown:
@@ -28,6 +30,15 @@ player Player {
 		walkUp:
 			4 0.16
 			5 0.16
+		swingDown:
+			24 0.1
+			25 0.05
+		swingSide:
+			26 0.1
+			27 0.05
+		swingUp:
+			28 0.1
+			29 0.05
 	}
 }
 
@@ -40,15 +51,15 @@ enemy Stalfaux {
 	States {
 		Spawn:
 			anim_play("inanimate")
-			trigger object_entered(64,player) state Animate
+			trigger object_entered(96,player) state Animate
 		Animate:
 			anim_play("animate")
-			trigger anim_finished() state Active
-		Active:
+			trigger anim_finished() state Default
+		Default:
 			anim_play("walk")
 			wander(0.25)
 			trigger timer(1) state BeginThrow
-			trigger object_exited(64,player) state UnAnimate
+			trigger object_exited(96,player) state UnAnimate
 		UnAnimate:
 			anim_play("unanimate")
 			trigger anim_finished() state Spawn
@@ -57,7 +68,10 @@ enemy Stalfaux {
 			trigger anim_finished() state Throw
 		Throw:
 			use_weapon("Bone")
-			trigger timer(0.01) state Active
+			change_state("EndThrow")
+		EndThrow:
+			anim_play("throw2")
+			trigger anim_finished() state Default
 	}
 	Animations {
 		inanimate:
@@ -75,29 +89,89 @@ enemy Stalfaux {
 			loop
 		throw:
 			4 0.16
+		throw2:
 			5 0.16
 	}
 }
 
-
-weapon Bone {
-	SpriteSheet "objects/bone", 6, 1
+enemy Smashroom {
+	Health 1.5
+	Speed 30
+	Damage 0.5
+	Size 4.5, 6
+	SpriteSheet "objects/smashroom", 1, 1
 	States {
 		Spawn:
-			anim_play("spin")
+			anim_play("default")
+			change_state("Default")
+		Default:
+			wander(0.33)
 	}
 	Animations {
-		spin:
-			2 0.2
-			3 0.2
-			4 0.2
-			5 0.2
+		default:
+			spr 0, flip 0 0.25
+			flip 1 0.25
 			loop
 	}
 }
 
+weapon Bone {
+	Speed 120
+	SpriteSheet "objects/bone", 6, 1
+	Size 2 2 rect
+	+delete_on_hit
+	States {
+		Spawn:
+			anim_play("spin")
+			target_nearest("player")
+			change_state("Default")
+		Default:
+			move()
+	}
+	Animations {
+		spin:
+			2 0.05
+			3 0.05
+			4 0.05
+			5 0.05
+			loop
+	}
+}
 
-
-
-
-
+weapon Sword {
+	Damage 0.5
+	SpriteSheet "objects/sword", 2, 1
+	Size 8, 8, rect
+	+delete_on_state_change
+	States {
+		Spawn:
+			match_spritedir()
+			match_position()
+			anim_dir_play("swing")
+			change_user_state("Swing")
+			change_state("Swing")
+		Swing:
+			trigger anim_finished() state Delete
+		Delete:
+			change_user_state("Default")
+			delete()
+	}
+	Animations {
+		swingDown:
+			pos -13 3, rot 270, col -12 3 8 2, spr 0 0.05
+			pos -11 12, rot 180, col -9 10 8 8, spr 1 0.05
+			pos 4 15, col 4 14 2 8, spr 0 0.05
+		swingLeft:
+			pos -3 -16, rot 0, col -3 -15 2 8, spr 0 0.05
+			pos -13 -10, rot 270, col -13 -8 8 8, spr 1 0.05
+			pos -13 4, col -15 4 8 2, spr 0 0.05
+		swingRight:
+			pos 3 -16, rot 0, col 3 -15 2 8, spr 0 0.05
+			pos 13 -10, col 13 -8 8 8, spr 1 0.05
+			pos 13 4, rot 90, col 15 4 8 2, spr 0 0.05
+		swingUp:
+			pos 15 -1, rot 90, col 14 -1 8 2, spr 0 0.05
+			pos 14 -9, rot 0, col 12 -7 8 8, spr 1 0.05
+			pos -4 -16, col -4 -15 2 8, spr 0 0.05
+	}
+}

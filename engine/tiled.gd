@@ -26,14 +26,9 @@ func import_tilemap(tilemap):
 	tilemap.set_collision_layer_bit(1,1)
 	tilemap.set_collision_mask_bit(1,1)
 	tilemap.position.y += 16
-	tilemap.z_index -= 10
-	if tilemap.has_meta("script"):
-		tilemap.set_script(load(tilemap.get_meta("script")))
-	if tilemap.has_meta("replace"):
-		replace_tilemap(tilemap, tilemap.get_meta("replace"))
+	tilemap.add_to_group("wall")
 
 func spawn_object(object):
-	print("Spawning object ", object)
 	if object.has_meta("path"):
 		var path = object.get_meta("path")
 		var node = load(str("res://game/cache/", path, ".tscn")).instance()
@@ -45,16 +40,6 @@ func spawn_object(object):
 		object.get_parent().remove_child(object)
 		scene.add_child(object)
 		object.set_owner(scene)
-
-func replace_tilemap(tilemap, replace):
-	var used_cells = tilemap.get_used_cells()
-	var replacement = load(replace).instance()
-	tilemap.free()
-	scene.add_child(replacement)
-	replacement.set_owner(scene)
-	for cell in used_cells:
-		replacement.set_cellv(cell, 0)
-		replacement.update_bitmask_region()
 
 func set_properties(object, node):
 	for meta in object.get_meta_list():

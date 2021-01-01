@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://engine/objects/enemy.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "TSObject",
 "class": "Entity",
 "language": "GDScript",
 "path": "res://engine/objects/entity.gd"
@@ -39,12 +39,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://engine/objects/player.gd"
 }, {
-"base": "Node",
-"class": "StateMachine",
-"language": "GDScript",
-"path": "res://engine/state_machine.gd"
-}, {
 "base": "Node2D",
+"class": "TSObject",
+"language": "GDScript",
+"path": "res://engine/objects/object.gd"
+}, {
+"base": "TSObject",
 "class": "Weapon",
 "language": "GDScript",
 "path": "res://engine/objects/weapon.gd"
@@ -56,7 +56,7 @@ _global_script_class_icons={
 "Helper": "",
 "Parser": "",
 "Player": "",
-"StateMachine": "",
+"TSObject": "",
 "Weapon": ""
 }
 
@@ -106,6 +106,46 @@ texture={
 "stream": false,
 "svg/scale": 1.0
 }
+
+[input]
+
+left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+ ]
+}
+right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+ ]
+}
+up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
+ ]
+}
+down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
+ ]
+}
+a={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"unicode":0,"echo":false,"script":null)
+ ]
+}
+b={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+2d_physics/layer_1="Wall"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemy"
+2d_physics/layer_4="Projectile"
 
 [tiled_importer]
 

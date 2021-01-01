@@ -1,90 +1,64 @@
-extends KinematicBody2D
+extends TSObject
 
 class_name Entity
 
 # Properties
-export var health = 0.5
-export var speed = 40
-export var damage = 0.5
+export(float) var health = 0.5
+export(int) var speed = 40
+export(float) var damage = 0
 
-# Node References
-var sprite : Sprite
-var anim : AnimationPlayer
-var collision : CollisionShape2D
-var state_machine : StateMachine
+var entity = self
 
 # Movement
 var movedir = Vector2(0,0)
 var spritedir = "Down"
 
+const DEFAULT_STATES = {
+	"Hurt": {
+		"actions": [
+			["set_hurt_shader",[1]],
+			["move",[125]]
+		],
+		"triggers": [
+			["timer",[0.15],"EndHurt"]
+		]
+	},
+	"EndHurt": {
+		"actions": [
+			["set_hurt_shader",[0]],
+			["change_state",["Default"]]
+		],
+		"triggers": []
+	},
+}
+
 func _ready():
-	add_to_group("object")
 	add_to_group("entity")
-	
-	sprite = get_node("sprite")
-	anim = get_node("anim")
 	collision = get_node("collision")
-	state_machine = get_node("state_machine")
-	
-	randomize_movedir()
-	
-	state_machine.change_state(state_machine.current_state)
+	if !sprite.material:
+		sprite.material = ShaderMaterial.new()
+		sprite.material.set_shader(preload("res://engine/shaders/entity.shader"))
 
-# ACTIONS #
-func use_weapon(_weapon):
-	pass
-
-func anim_play(animation):
-	if anim.current_animation != animation:
-		anim.play(animation)
-
-func anim_dir_play(animation):
-	var newanim = str(animation, spritedir)
-	if spritedir in ["Left", "Right"]:
-		newanim = str(animation, "Side")
-	if anim.current_animation != animation:
-		anim.play(newanim)
+func move(spd=speed):
+	spd = int(spd)
+	loop_movement(spd)
 
 func wander(length):
 	execute_timer(length, "randomize_movedir")
 	loop_movement()
-	if is_on_wall():
+	if entity.is_on_wall():
 		movedir = -movedir
 
-# TRIGGERS #
-func trigger_anim_finished(trigger, _state):
-	state_machine.connect_trigger(anim, "animation_finished", "change_state_skip1var", trigger[2])
+func use_weapon(path : String):
+	var weapon = load(str("res://game/cache/", path.to_lower(), ".tscn")).instance()
+	get_parent().add_child(weapon)
+	weapon.position = position
+	weapon.user = self
+	weapon.process_flags()
 
-func trigger_timer(trigger, state):
-	var timer = get_node(str("timer_", state))
-	state_machine.connect_trigger(timer, "timeout", "change_state", trigger[2])
-	timer.start()
-
-func trigger_object_entered(trigger, state):
-	var area = get_node(str("area_", state))
-	state_machine.connect_trigger(area, "body_entered", "change_state_check_group", [trigger[1][1], trigger[2]])
-	yield(get_tree(), "physics_frame")
-	for body in area.get_overlapping_bodies():
-		if body.is_in_group(trigger[1][1]):
-			state_machine.change_state(trigger[2])
-			break
-
-func trigger_object_exited(trigger, state):
-	var area = get_node(str("area_", state))
-	state_machine.connect_trigger(area, "body_exited", "change_state_check_group", [trigger[1][1], trigger[2]])
-	yield(get_tree(), "physics_frame")
-	var has_body = false
-	for body in area.get_overlapping_bodies():
-		if body.is_in_group(trigger[1][1]):
-			has_body = true
-			break
-	if !has_body:
-		state_machine.change_state(trigger[2])
-
-# ENTITY LOGIC #
-func loop_movement():
-	var motion = movedir.normalized() * speed
-	motion = move_and_slide(motion)
+func loop_movement(spd=speed):
+	var motion = movedir.normalized() * spd
+	motion = entity.move_and_slide(motion)
 
 func loop_spritedir():
 	match movedir:
@@ -99,27 +73,14 @@ func loop_spritedir():
 	
 	sprite.flip_h = (spritedir == "Left")
 
-func execute_timer(length, function, args=[]):
-	if !has_node(str("timer_",function)):
-		var timer = Timer.new()
-		add_child(timer)
-		timer.name = str("timer_",function)
-		timer.wait_time = float(length)
-		timer.connect("timeout", self, function, args)
-		timer.add_to_group("state_node")
-		timer.start()
+func damage(dmg, pos):
+	health -= dmg
+	if states.has("Hurt"):
+		movedir = position - pos
+		change_state("Hurt")
+
+func set_hurt_shader(h):
+	sprite.material.set_shader_param("is_hurt", bool(int(h)))
 
 func randomize_movedir():
 	movedir = random_direction()
-
-func random_direction():
-	match randi() % 3:
-		0:
-			return Vector2.LEFT
-		1:
-			return Vector2.RIGHT
-		2:
-			return Vector2.UP
-		3:
-			return Vector2.DOWN
-

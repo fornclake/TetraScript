@@ -3,11 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "maps/cave.tmx",
+    "activeFile": "D:/Godot Engine/TetraForce/maps/dungeon1.tmx",
     "expandedProjectPaths": [
-        "tiled",
         ".",
-        "maps"
+        "maps",
+        "tiled"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -21,10 +21,10 @@
         },
         "D:/Godot Engine/TetraForce/maps/dungeon1.tmx": {
             "scale": 2,
-            "selectedLayer": 1,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 344.5,
-                "y": 840.5
+                "x": 334.5,
+                "y": 1011.25
             }
         },
         "D:/Godot Engine/TetraForce/maps/overworld.tmx": {
@@ -157,11 +157,11 @@
             "scaleInDock": 1
         },
         "maps/cave.tmx": {
-            "scale": 1.5,
+            "scale": 2,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 240.66666666666669,
-                "y": 175.33333333333331
+                "x": 137,
+                "y": 143.75
             }
         },
         "maps/test.tmx": {
@@ -183,21 +183,21 @@
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
-        "maps/cave.tmx"
+        "D:/Godot Engine/TetraForce/maps/dungeon1.tmx"
     ],
     "project": "tetraforce.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "D:/Godot Engine/TetraForce/maps/dungeon.tmx",
+        "D:/Godot Engine/TetraForce/maps/dungeon1.tmx",
         "maps/cave.tmx",
+        "D:/Godot Engine/TetraForce/maps/shrine.tmx",
+        "D:/Godot Engine/TetraForce/maps/dungeon.tmx",
         "maps/test.tmx",
         "tiled/cave_tileset.tsx",
-        "D:/Godot Engine/TetraForce/maps/dungeon1.tmx",
         "D:/Godot Engine/TetraForce/maps/shoreside.tmx",
         "D:/Godot Engine/TetraForce/maps/overworld_caves/shrine_cave.tmx",
         "D:/Godot Engine/TetraForce/tiled/objects.tsx",
         "D:/Godot Engine/TetraForce/maps/overworld.tmx",
-        "D:/Godot Engine/TetraForce/maps/shrine.tmx",
         "F:/Godot/old/terra-labyrinth/areas/RuinsTest/Demo.tmx",
         "D:/Godot Engine/TetraForce/maps/overworld_caves/overworld_caves.tmx"
     ]
