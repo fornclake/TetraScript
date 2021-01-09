@@ -1,0 +1,20 @@
+[remap]
+
+importer="vnen.tiled_tileset_importer"
+type="TileSet"
+path="res://.import/beach_tileset.tsx-59fe37b98de654e22fa70dbf0d10131a.res"
+
+[deps]
+
+source_file="res://game/tiled/beach_tileset.tsx"
+dest_files=[ "res://.import/beach_tileset.tsx-59fe37b98de654e22fa70dbf0d10131a.res" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+image_flags=7
+embed_internal_images=false
+save_tiled_properties=false
+apply_offset=false
+post_import_script=""

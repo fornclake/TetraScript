@@ -3,7 +3,8 @@ extends Node
 func _ready():
 	randomize()
 	
-	var next_scene = "res://engine/editor.tscn"
+	var next_scene = "res://game/maps/dungeon.tmx"
+	
 	var arguments = {}
 	for argument in OS.get_cmdline_args():
 		if argument.find("=") > -1:

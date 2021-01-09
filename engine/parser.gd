@@ -2,7 +2,7 @@ extends Node
 
 class_name Parser
 
-const OBJECT_TYPES = ["entity", "enemy", "player", "weapon"]
+const OBJECT_TYPES = ["entity", "enemy", "player", "weapon", "tile"]
 
 func parse_objects(t):
 	var objects = []

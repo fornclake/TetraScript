@@ -119,7 +119,8 @@ weapon Bone {
 	Speed 120
 	SpriteSheet "objects/bone", 6, 1
 	Size 2 2 rect
-	+delete_on_hit
+	+DeleteOnHit
+	+Projectile
 	States {
 		Spawn:
 			anim_play("spin")
@@ -142,7 +143,7 @@ weapon Sword {
 	Damage 0.5
 	SpriteSheet "objects/sword", 2, 1
 	Size 8, 8, rect
-	+delete_on_state_change
+	+DeleteOnUserHurt
 	States {
 		Spawn:
 			match_spritedir()
@@ -173,5 +174,28 @@ weapon Sword {
 			pos 15 -1, rot 90, col 14 -1 8 2, spr 0 0.05
 			pos 14 -9, rot 0, col 12 -7 8 8, spr 1 0.05
 			pos -4 -16, col -4 -15 2 8, spr 0 0.05
+	}
+}
+
+tile Exit {
+	SpriteSheet "objects/exit", 1, 1
+	Size 8, 8, rect
+	Map "dungeon"
+	Entrance "entrance"
+	+NoCollision
+	States {
+		Spawn:
+			anim_play("default")
+			trigger timer(0.1) state Overlap
+		Overlap:
+			trigger object_exited(4,player) state Active
+		Active:
+			trigger object_entered(4,player) state Entered
+		Entered:
+			change_map(Map,Entrance)
+	}
+	Animations {
+		default:
+			0 0
 	}
 }

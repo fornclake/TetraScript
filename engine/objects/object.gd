@@ -3,6 +3,7 @@ extends Node2D
 class_name TSObject
 
 # Node References
+var myself = self
 var sprite : Sprite
 var anim : AnimationPlayer
 var collision : CollisionShape2D
@@ -13,6 +14,10 @@ export var states = {}
 var triggers = [] # [[connecter, name, func], [connecter, name, func], ...]
 
 export var flags = []
+export var variables = {} ### CURRENTLY CUSTOM VARIABLES ONLY SUPPORT ACTIONS NOT TRIGGERS ###
+
+var home_position = position
+var home_zone = null
 
 signal state_changed
 
@@ -25,24 +30,36 @@ func _ready():
 	if has_node("collision"):
 		collision = get_node("collision")
 	
-	for flag in flags:
-		add_to_group(flag)
-	
 	z_index += 100
 	
+	home_position = position
+	
+	process_flags()
 	change_state(current_state)
 	
 	yield(get_tree(), "physics_frame")
 	
 	show()
 
+func process_flags():
+	pass
+
 # STATE MACHINE
 func _physics_process(_delta):
-	state_machine()
+	actions()
 
-func state_machine():
+func actions():
 	for action in states[current_state]["actions"]:
-		callv(action[0], action[1])
+		var function = action[0]
+		var parameters = []
+		for parameter in action[1]:
+			# strings w/o quotes are custom variables
+			if parameter is String && parameter.count("\"") == 0:
+				var p = str(parameter.to_lower())
+				if p in variables.keys(): # if custom variable is found,
+					parameter = variables[p] # replace parameter with variable's value
+			parameters.append(parameter)
+		callv(function, parameters)
 
 func change_state(state):
 	for child in get_children():
@@ -56,18 +73,18 @@ func change_state(state):
 	for new_trigger in states[state]["triggers"]:
 		process_trigger(new_trigger, state)
 	
-	emit_signal("state_changed")
-	
 	current_state = state
+	
+	emit_signal("state_changed")
 
 func process_trigger(trigger, state):
 	call(str("trigger_", trigger[0]), trigger, state)
 
 func connect_trigger(node, sig, fnc, state):
-	node.connect(sig, self, fnc, [state])
-	triggers.append([node, sig, fnc])
+		node.connect(sig, self, fnc, [state])
+		triggers.append([node, sig, fnc])
 
-func change_state_skip1var(_var1, state):
+func change_state_skip1var(_var1, state): # some signals return stuff. this function just skips those
 	change_state(state)
 
 func change_state_check_group(node, p): # p[0] = group, p[1] = state
@@ -88,10 +105,13 @@ func anim_dir_play(animation):
 		anim.play(newanim)
 
 func say(message):
-	print(str(self, " \"", name, "\":", message))
+	print(str(name, self, ": ", message))
 
 func delete():
 	queue_free()
+
+func change_map(map, entrance):
+	Client.change_map(map, entrance)
 
 # TRIGGERS #
 func trigger_anim_finished(trigger, _state):

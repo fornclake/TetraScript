@@ -1,0 +1,20 @@
+[remap]
+
+importer="vnen.tiled_tileset_importer"
+type="TileSet"
+path="res://.import/town_interior.tsx-019a49d3496c9b46c3d037c1367dc956.res"
+
+[deps]
+
+source_file="res://game/tiled/town_interior.tsx"
+dest_files=[ "res://.import/town_interior.tsx-019a49d3496c9b46c3d037c1367dc956.res" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+image_flags=7
+embed_internal_images=false
+save_tiled_properties=false
+apply_offset=false
+post_import_script=""

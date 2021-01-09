@@ -46,7 +46,7 @@ vec4 swap(vec4 base) {
 void fragment() {
 	vec4 base = texture(TEXTURE, UV);
 	if(is_hurt) {
-		COLOR = vec4(mix(base, hurt(base), (sin(TIME * 25.0) + 1.0) / 2.0).rgb, base.a);
+		COLOR = vec4(mix(base, hurt(base), 1.0).rgb, base.a);
 	} else {
 		if(custom_colors) {
 			COLOR = swap(base);

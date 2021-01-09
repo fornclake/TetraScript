@@ -4,12 +4,6 @@ class_name Player
 
 func _ready():
 	add_to_group("player")
-	
-	var camera = Camera2D.new()
-	camera.name = "camera"
-	add_child(camera)
-	camera.current = true
-	camera.zoom = Vector2(0.25, 0.25)
 
 # ACTIONS #
 func default():

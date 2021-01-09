@@ -2,12 +2,12 @@
 
 importer="vnen.tiled_importer"
 type="PackedScene"
-path="res://.import/test.tmx-ff3f06ea28cc71cadfa0020913bdeede.scn"
+path="res://.import/dungeon2.tmx-5816677738940037fc2d2d81b70ecdba.scn"
 
 [deps]
 
-source_file="res://game/maps/test.tmx"
-dest_files=[ "res://.import/test.tmx-ff3f06ea28cc71cadfa0020913bdeede.scn" ]
+source_file="res://game/maps/dungeon2.tmx"
+dest_files=[ "res://.import/dungeon2.tmx-5816677738940037fc2d2d81b70ecdba.scn" ]
 
 [params]
 

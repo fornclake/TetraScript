@@ -11,13 +11,17 @@ var spritedir = "Down"
 
 func _ready():
 	add_to_group("weapon")
-	connect("body_entered", self, "attempt_damage")
+	var _err = connect("body_entered", self, "attempt_damage")
 
 func process_flags():
-	if flags.has("delete_on_hit"):
-		connect("body_entered", self, "delete_on_hit")
-	if flags.has("delete_on_state_change"):
-		user.connect("state_changed", self, "queue_free")
+	.process_flags()
+	if flags.has("DeleteOnHit"):
+		var _err = connect("body_entered", self, "delete_on_hit")
+	if flags.has("Projectile"):
+		add_to_group("projectile")
+	yield(get_tree(), "physics_frame") # for things that require user, call after this
+	if flags.has("DeleteOnUserHurt"):
+		var _err = user.connect("hurt", self, "change_state", ["Delete"])
 
 func move():
 	position += movedir * speed * get_physics_process_delta_time()
@@ -40,7 +44,8 @@ func match_position():
 	position = user.position
 
 func change_user_state(state):
-	user.change_state(state)
+	if user.current_state != "Hurt": # maybe have an editable list of unchangeable states?
+		user.change_state(state)
 
 func delete_on_hit(body):
 	if body != user:
@@ -50,7 +55,8 @@ func attempt_damage(body):
 	if body is Entity && body != user:
 		body.damage(damage, position)
 
-
+func trigger_user_state_changed(trigger, _state):
+	connect_trigger(user, "state_changed", "change_state", trigger[2])
 
 
 

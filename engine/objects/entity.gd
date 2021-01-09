@@ -5,30 +5,21 @@ class_name Entity
 # Properties
 export(float) var health = 0.5
 export(int) var speed = 40
-export(float) var damage = 0
-
-var entity = self
 
 # Movement
 var movedir = Vector2(0,0)
 var spritedir = "Down"
 
+signal hurt
+
 const DEFAULT_STATES = {
 	"Hurt": {
 		"actions": [
-			["set_hurt_shader",[1]],
-			["move",[125]]
+			["move",[100]]
 		],
 		"triggers": [
-			["timer",[0.15],"EndHurt"]
+			["timer",[0.2],"Default"]
 		]
-	},
-	"EndHurt": {
-		"actions": [
-			["set_hurt_shader",[0]],
-			["change_state",["Default"]]
-		],
-		"triggers": []
 	},
 }
 
@@ -37,7 +28,10 @@ func _ready():
 	collision = get_node("collision")
 	if !sprite.material:
 		sprite.material = ShaderMaterial.new()
-		sprite.material.set_shader(preload("res://engine/shaders/entity.shader"))
+		sprite.material.set_shader(preload("res://engine/gameplay/shaders/entity.shader"))
+
+func _process(_delta):
+	set_hurt_shader(current_state == "Hurt")
 
 func move(spd=speed):
 	spd = int(spd)
@@ -46,7 +40,7 @@ func move(spd=speed):
 func wander(length):
 	execute_timer(length, "randomize_movedir")
 	loop_movement()
-	if entity.is_on_wall():
+	if myself.is_on_wall():
 		movedir = -movedir
 
 func use_weapon(path : String):
@@ -54,11 +48,10 @@ func use_weapon(path : String):
 	get_parent().add_child(weapon)
 	weapon.position = position
 	weapon.user = self
-	weapon.process_flags()
 
 func loop_movement(spd=speed):
 	var motion = movedir.normalized() * spd
-	motion = entity.move_and_slide(motion)
+	motion = myself.move_and_slide(motion)
 
 func loop_spritedir():
 	match movedir:
@@ -75,7 +68,8 @@ func loop_spritedir():
 
 func damage(dmg, pos):
 	health -= dmg
-	if states.has("Hurt"):
+	if states.has("Hurt") && current_state != "Hurt":
+		emit_signal("hurt")
 		movedir = position - pos
 		change_state("Hurt")
 

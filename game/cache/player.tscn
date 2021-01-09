@@ -46,7 +46,7 @@ tracks/2/keys = {
 "values": [  ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("collision:position")
+tracks/3/path = NodePath("sprite:flip_h")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -58,7 +58,7 @@ tracks/3/keys = {
 "values": [  ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("collision:scale")
+tracks/4/path = NodePath("collision:position")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -70,7 +70,7 @@ tracks/4/keys = {
 "values": [  ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("sprite:flip_h")
+tracks/5/path = NodePath("collision:scale")
 tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -121,7 +121,7 @@ tracks/2/keys = {
 "values": [  ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("collision:position")
+tracks/3/path = NodePath("sprite:flip_h")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -133,7 +133,7 @@ tracks/3/keys = {
 "values": [  ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("collision:scale")
+tracks/4/path = NodePath("collision:position")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -145,7 +145,7 @@ tracks/4/keys = {
 "values": [  ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("sprite:flip_h")
+tracks/5/path = NodePath("collision:scale")
 tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -196,7 +196,7 @@ tracks/2/keys = {
 "values": [  ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("collision:position")
+tracks/3/path = NodePath("sprite:flip_h")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -208,7 +208,7 @@ tracks/3/keys = {
 "values": [  ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("collision:scale")
+tracks/4/path = NodePath("collision:position")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -220,7 +220,7 @@ tracks/4/keys = {
 "values": [  ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("sprite:flip_h")
+tracks/5/path = NodePath("collision:scale")
 tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -271,7 +271,7 @@ tracks/2/keys = {
 "values": [  ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("collision:position")
+tracks/3/path = NodePath("sprite:flip_h")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -283,7 +283,7 @@ tracks/3/keys = {
 "values": [  ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("collision:scale")
+tracks/4/path = NodePath("collision:position")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -295,7 +295,7 @@ tracks/4/keys = {
 "values": [  ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("sprite:flip_h")
+tracks/5/path = NodePath("collision:scale")
 tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -346,7 +346,7 @@ tracks/2/keys = {
 "values": [  ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("collision:position")
+tracks/3/path = NodePath("sprite:flip_h")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -358,7 +358,7 @@ tracks/3/keys = {
 "values": [  ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("collision:scale")
+tracks/4/path = NodePath("collision:position")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -370,7 +370,7 @@ tracks/4/keys = {
 "values": [  ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("sprite:flip_h")
+tracks/5/path = NodePath("collision:scale")
 tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -421,7 +421,7 @@ tracks/2/keys = {
 "values": [  ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("collision:position")
+tracks/3/path = NodePath("sprite:flip_h")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -433,7 +433,7 @@ tracks/3/keys = {
 "values": [  ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("collision:scale")
+tracks/4/path = NodePath("collision:position")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -445,7 +445,7 @@ tracks/4/keys = {
 "values": [  ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("sprite:flip_h")
+tracks/5/path = NodePath("collision:scale")
 tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -497,7 +497,7 @@ tracks/2/keys = {
 "values": [  ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("collision:position")
+tracks/3/path = NodePath("sprite:flip_h")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -509,7 +509,7 @@ tracks/3/keys = {
 "values": [  ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("collision:scale")
+tracks/4/path = NodePath("collision:position")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -521,7 +521,7 @@ tracks/4/keys = {
 "values": [  ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("sprite:flip_h")
+tracks/5/path = NodePath("collision:scale")
 tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -573,7 +573,7 @@ tracks/2/keys = {
 "values": [  ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("collision:position")
+tracks/3/path = NodePath("sprite:flip_h")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -585,7 +585,7 @@ tracks/3/keys = {
 "values": [  ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("collision:scale")
+tracks/4/path = NodePath("collision:position")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -597,7 +597,7 @@ tracks/4/keys = {
 "values": [  ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("sprite:flip_h")
+tracks/5/path = NodePath("collision:scale")
 tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -648,7 +648,7 @@ tracks/2/keys = {
 "values": [  ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("collision:position")
+tracks/3/path = NodePath("sprite:flip_h")
 tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -660,7 +660,7 @@ tracks/3/keys = {
 "values": [  ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("collision:scale")
+tracks/4/path = NodePath("collision:position")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -672,7 +672,7 @@ tracks/4/keys = {
 "values": [  ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("sprite:flip_h")
+tracks/5/path = NodePath("collision:scale")
 tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -685,6 +685,8 @@ tracks/5/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource( 2 )
 current_state = "Spawn"
 states = {
@@ -692,13 +694,9 @@ states = {
 "actions": [ [ "default", [  ] ] ],
 "triggers": [  ]
 },
-"EndHurt": {
-"actions": [ [ "set_hurt_shader", [ 0 ] ], [ "change_state", [ "Default" ] ] ],
-"triggers": [  ]
-},
 "Hurt": {
-"actions": [ [ "set_hurt_shader", [ 1 ] ], [ "move", [ 125 ] ] ],
-"triggers": [ [ "timer", [ 0.15 ], "EndHurt" ] ]
+"actions": [ [ "move", [ 100 ] ] ],
+"triggers": [ [ "timer", [ 0.2 ], "Default" ] ]
 },
 "Spawn": {
 "actions": [ [ "change_state", PoolStringArray( "Default" ) ] ],
@@ -710,11 +708,14 @@ states = {
 }
 }
 flags = [  ]
+variables = {
+"damage": 0.0
+}
 health = 3.0
 speed = 70.0
-damage = 0.0
 
 [node name="collision" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
 [node name="sprite" type="Sprite" parent="."]
@@ -734,5 +735,5 @@ anims/walkSide = SubResource( 9 )
 anims/walkUp = SubResource( 10 )
 
 [node name="timer_Hurt" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.2
 one_shot = true
