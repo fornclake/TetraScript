@@ -82,10 +82,10 @@ tracks/5/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 4.0
+radius = 1.0
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 4.0
+radius = 1.0
 
 [node name="Exit" type="StaticBody2D"]
 script = ExtResource( 1 )
@@ -93,7 +93,7 @@ current_state = "Spawn"
 states = {
 "Active": {
 "actions": [  ],
-"triggers": [ [ "object_entered", PoolStringArray( "4", "player" ), "Entered" ] ]
+"triggers": [ [ "object_entered", PoolStringArray( "1", "player" ), "Entered" ] ]
 },
 "Entered": {
 "actions": [ [ "change_map", PoolStringArray( "Map", "Entrance" ) ] ],
@@ -101,18 +101,23 @@ states = {
 },
 "Overlap": {
 "actions": [  ],
-"triggers": [ [ "object_exited", PoolStringArray( "4", "player" ), "Active" ] ]
+"triggers": [ [ "object_exited", PoolStringArray( "1", "player" ), "Active" ] ]
 },
 "Spawn": {
 "actions": [ [ "anim_play", PoolStringArray( "default" ) ] ],
 "triggers": [ [ "timer", PoolStringArray( "0.1" ), "Overlap" ] ]
 }
 }
-flags = [ "NoCollision" ]
+flags = [ "NoCollision", "ClientSide" ]
 variables = {
-"damage": 0.0,
 "entrance": "entrance",
 "map": "dungeon"
+}
+update_properties = {
+
+}
+enter_properties = {
+
 }
 
 [node name="sprite" type="Sprite" parent="."]
@@ -140,3 +145,5 @@ visible = false
 
 [node name="col" type="CollisionShape2D" parent="area_Active"]
 shape = SubResource( 4 )
+
+[node name="tween" type="Tween" parent="."]

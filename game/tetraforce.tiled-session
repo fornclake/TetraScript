@@ -3,10 +3,10 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "D:/Godot Engine/TetraForce/maps/dungeon1.tmx",
+    "activeFile": "maps/dungeon.tmx",
     "expandedProjectPaths": [
-        ".",
         "maps",
+        ".",
         "tiled"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -168,16 +168,16 @@
             "scale": 2,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 160.25,
-                "y": -151.75
+                "x": 136.25,
+                "y": -116
             }
         },
         "maps/dungeon2.tmx": {
             "scale": 2,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": -31.75,
-                "y": 8.25
+                "x": -110.25,
+                "y": -18.5
             }
         },
         "maps/test.tmx": {
@@ -227,11 +227,14 @@
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
-        "D:/Godot Engine/TetraForce/maps/dungeon1.tmx"
+        "maps/dungeon.tmx",
+        "maps/dungeon2.tmx"
     ],
     "project": "tetraforce.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "maps/dungeon2.tmx",
+        "maps/dungeon.tmx",
         "D:/Godot Engine/TetraForce/maps/overworld.tmx",
         "maps/cave.tmx",
         "tiled/dungeon_tileset.tsx",
@@ -241,8 +244,6 @@
         "tiled/beach_tileset.tsx",
         "tiled/overworld_tileset.tsx",
         "tiled/town_interior.tsx",
-        "tiled/town_tileset.tsx",
-        "tiled/shipwreck_entrance.tsx",
-        "tiled/cave_tileset.tsx"
+        "tiled/town_tileset.tsx"
     ]
 }

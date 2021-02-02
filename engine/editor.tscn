@@ -30,12 +30,12 @@ zoom = Vector2( 0.5, 0.5 )
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 1008.0
-margin_bottom = 584.0
+margin_bottom = 560.0
 split_offset = 32
 
 [node name="scrollviews" type="TabContainer" parent="hsplit"]
 margin_right = 416.0
-margin_bottom = 568.0
+margin_bottom = 544.0
 rect_min_size = Vector2( 384, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -51,7 +51,7 @@ margin_bottom = -4.0
 
 [node name="text" type="TextEdit" parent="hsplit/scrollviews/Script View"]
 margin_right = 408.0
-margin_bottom = 472.0
+margin_bottom = 448.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -59,9 +59,9 @@ __meta__ = {
 }
 
 [node name="bottom" type="MarginContainer" parent="hsplit/scrollviews/Script View"]
-margin_top = 484.0
+margin_top = 460.0
 margin_right = 408.0
-margin_bottom = 532.0
+margin_bottom = 508.0
 rect_min_size = Vector2( 0, 48 )
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
@@ -118,7 +118,7 @@ size_flags_vertical = 3
 [node name="viewer" type="PanelContainer" parent="hsplit"]
 margin_left = 428.0
 margin_right = 992.0
-margin_bottom = 568.0
+margin_bottom = 544.0
 
 [node name="objects_scroll" type="ScrollContainer" parent="hsplit/viewer"]
 margin_left = 7.0
@@ -140,7 +140,7 @@ alignment = 1
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 557.0
-margin_bottom = 561.0
+margin_bottom = 537.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 16
 custom_constants/margin_top = 40
@@ -151,7 +151,7 @@ custom_constants/margin_bottom = 40
 margin_left = 16.0
 margin_top = 40.0
 margin_right = 534.0
-margin_bottom = 514.0
+margin_bottom = 490.0
 rect_min_size = Vector2( 256, 144 )
 focus_neighbour_left = NodePath(".")
 focus_neighbour_top = NodePath(".")
@@ -168,9 +168,9 @@ stretch_mode = 6
 
 [node name="states_scroll" type="ScrollContainer" parent="hsplit/viewer"]
 margin_left = 7.0
-margin_top = 529.0
+margin_top = 505.0
 margin_right = 557.0
-margin_bottom = 561.0
+margin_bottom = 537.0
 rect_min_size = Vector2( 0, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 8
@@ -186,7 +186,7 @@ alignment = 1
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 1008.0
-margin_bottom = 584.0
+margin_bottom = 560.0
 window_title = "Open a File"
 mode = 0
 filters = PoolStringArray( "*.txt" )
@@ -197,7 +197,7 @@ current_path = "res://game/"
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 1008.0
-margin_bottom = 584.0
+margin_bottom = 560.0
 filters = PoolStringArray( "*.txt" )
 [connection signal="pressed" from="hsplit/scrollviews/Script View/bottom/buttons/parse" to="." method="_on_parse_pressed"]
 [connection signal="pressed" from="hsplit/scrollviews/Script View/bottom/buttons/save" to="." method="_on_save_pressed"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://game/objects/key.png" type="Texture" id=1]
-[ext_resource path="res://engine/objects/player.gd" type="Script" id=2]
+[ext_resource path="res://engine/objects/player.gd" type="Script" id=1]
+[ext_resource path="res://game/objects/key.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.5
@@ -687,7 +687,7 @@ tracks/5/keys = {
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 current_state = "Spawn"
 states = {
 "Default": {
@@ -707,9 +707,15 @@ states = {
 "triggers": [  ]
 }
 }
-flags = [  ]
+flags = [ "ForceSync" ]
 variables = {
-"damage": 0.0
+
+}
+update_properties = {
+
+}
+enter_properties = {
+
 }
 health = 3.0
 speed = 70.0
@@ -719,7 +725,7 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 vframes = 8
 hframes = 6
 
@@ -737,3 +743,5 @@ anims/walkUp = SubResource( 10 )
 [node name="timer_Hurt" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="tween" type="Tween" parent="."]

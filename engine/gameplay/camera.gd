@@ -10,15 +10,17 @@ signal scroll_start
 signal scroll_end
 
 const SCROLL_DURATION = 0.5
-const SCREEN_SIZE = Vector2(256,144)
 const TILE_SIZE = 16
+
+var screen_size = Vector2(256,144)
 
 func _ready():
 	set_physics_process(false)
+	var _size_changed = get_tree().root.connect("size_changed", self, "window_size_changed")
 
 func start(): # call after target set
 	position = target.position
-	var _err = connect("zone_changed", self, "scroll_screen")
+	var _zone_changed = connect("zone_changed", self, "scroll_screen")
 	
 	yield(get_tree(), "physics_frame")
 	
@@ -33,9 +35,12 @@ func _physics_process(_delta):
 	position = target.position
 	update_current_zone()
 
+func window_size_changed():
+	screen_size = get_tree().root.get_viewport().size / 4
+
 func update_current_zone():
-	if center.get_overlapping_areas().size() > 0:
-		var zone = center.get_overlapping_areas()[0] # priority shouldn't matter much
+	if center.get_overlapping_areas().size() == 1:
+		var zone = center.get_overlapping_areas()[0]
 		if zone != current_zone:
 			current_zone = zone
 			emit_signal("zone_changed")
@@ -61,8 +66,8 @@ func scroll_screen():
 	# is at least halfway through the screen size away from the edge.
 	# basically fake limits code just used to get where the camera /will/ be
 	var scroll_to = target.position
-	var scroll_to_min = zone_rect.position + SCREEN_SIZE / 2
-	var scroll_to_max = zone_rect.position + zone_rect.size - SCREEN_SIZE / 2
+	var scroll_to_min = zone_rect.position + screen_size / 2
+	var scroll_to_max = zone_rect.position + zone_rect.size - screen_size / 2
 	scroll_to.x = clamp(scroll_to.x, scroll_to_min.x, scroll_to_max.x)
 	scroll_to.y = clamp(scroll_to.y, scroll_to_min.y, scroll_to_max.y)
 	
@@ -71,13 +76,11 @@ func scroll_screen():
 	tween.start()
 	yield(tween, "tween_all_completed")
 	
-	# actually set the limits
-	set_limits(zone_rect)
+	set_limits(zone_rect) # actually set the limits
 	
-	# finish up and start following player again
 	smoothing_enabled = true
-	emit_signal("scroll_end")
-	set_physics_process(true)
+	emit_signal("scroll_end") # does stuff in map.gd
+	set_physics_process(true) # starts following player again
 
 func set_limits(rect : Rect2):
 	limit_left = int(rect.position.x)

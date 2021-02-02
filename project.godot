@@ -75,15 +75,16 @@ _global_script_class_icons={
 [application]
 
 config/name="TetraScript"
-run/main_scene="res://main.tscn"
+run/main_scene="res://engine/boot.tscn"
 
 [autoload]
 
-Client="*res://engine/client.gd"
-Debug="*res://engine/debug.tscn"
+Network="*res://engine/gameplay/network.tscn"
+Client="*res://engine/gameplay/client.tscn"
 
 [display]
 
+window/size/height=576
 window/stretch/aspect="expand"
 
 [editor_plugins]
@@ -156,6 +157,16 @@ b={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
  ]
 }
+chat={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"unicode":0,"echo":false,"script":null)
+ ]
+}
+command={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":47,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -168,6 +179,7 @@ b={
 [rendering]
 
 quality/driver/driver_name="GLES2"
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 
 [tiled_importer]
 

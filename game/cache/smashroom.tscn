@@ -110,6 +110,12 @@ flags = [  ]
 variables = {
 
 }
+update_properties = {
+
+}
+enter_properties = {
+
+}
 health = 1.5
 speed = 30.0
 damage = 0.5
@@ -135,3 +141,5 @@ anims/default = SubResource( 3 )
 [node name="timer_Hurt" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="tween" type="Tween" parent="."]

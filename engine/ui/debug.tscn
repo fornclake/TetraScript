@@ -1,0 +1,93 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://engine/ui/debug.gd" type="Script" id=1]
+
+[node name="debug" type="VBoxContainer"]
+custom_constants/separation = -1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="update" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="fps" type="Label" parent="."]
+margin_right = 30.0
+margin_bottom = 14.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "FPS: "
+
+[node name="map" type="Label" parent="."]
+margin_top = 13.0
+margin_right = 35.0
+margin_bottom = 27.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Map: "
+
+[node name="zone" type="Label" parent="."]
+margin_top = 26.0
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Zone: "
+
+[node name="objects" type="Label" parent="."]
+margin_top = 39.0
+margin_right = 54.0
+margin_bottom = 53.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Objects:"
+
+[node name="map_objects" type="Label" parent="."]
+margin_top = 52.0
+margin_right = 39.0
+margin_bottom = 66.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = " Map: "
+
+[node name="zone_objects" type="Label" parent="."]
+margin_top = 65.0
+margin_right = 44.0
+margin_bottom = 79.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = " Zone: "
+
+[node name="active_objects" type="Label" parent="."]
+margin_top = 78.0
+margin_right = 48.0
+margin_bottom = 92.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = " Active:"
+
+[node name="mp_mode" type="Label" parent="."]
+margin_top = 91.0
+margin_right = 28.0
+margin_bottom = 105.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "MP: "
+
+[node name="player_list" type="Label" parent="."]
+margin_top = 104.0
+margin_right = 50.0
+margin_bottom = 118.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Players:"
+
+[node name="map_hosts" type="Label" parent="."]
+margin_top = 117.0
+margin_right = 41.0
+margin_bottom = 131.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Hosts:"
+[connection signal="timeout" from="update" to="." method="update"]

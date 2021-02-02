@@ -1,9 +1,9 @@
 extends Node
 
+export(String, FILE) var next_scene = "res://game/maps/dungeon.tmx"
+
 func _ready():
 	randomize()
-	
-	var next_scene = "res://game/maps/dungeon.tmx"
 	
 	var arguments = {}
 	for argument in OS.get_cmdline_args():

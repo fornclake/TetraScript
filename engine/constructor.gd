@@ -58,6 +58,11 @@ func construct_object(dict):
 	initialize_animations(object, dict.animations)
 	initialize_triggers(object, dict.states)
 	
+	var tween = Tween.new()
+	tween.name = "tween"
+	object.add_child(tween)
+	tween.owner = object
+	
 	object.name = dict.name
 	object.states = dict.states
 	object.flags = dict.flags

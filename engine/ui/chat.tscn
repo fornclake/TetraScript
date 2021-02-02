@@ -1,0 +1,121 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://engine/ui/theme/theme.tres" type="Theme" id=1]
+[ext_resource path="res://engine/ui/chat.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="Theme" id=16]
+HScrollBar/icons/decrement = null
+HScrollBar/icons/decrement_highlight = null
+HScrollBar/icons/increment = null
+HScrollBar/icons/increment_highlight = null
+HScrollBar/styles/grabber = SubResource( 6 )
+HScrollBar/styles/grabber_highlight = SubResource( 7 )
+HScrollBar/styles/grabber_pressed = SubResource( 8 )
+HScrollBar/styles/scroll = SubResource( 9 )
+HScrollBar/styles/scroll_focus = SubResource( 10 )
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = SubResource( 11 )
+VScrollBar/styles/grabber_highlight = SubResource( 12 )
+VScrollBar/styles/grabber_pressed = SubResource( 13 )
+VScrollBar/styles/scroll = SubResource( 14 )
+VScrollBar/styles/scroll_focus = SubResource( 15 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.196078, 0.196078, 0.196078, 0.392157 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[node name="chat" type="PanelContainer"]
+margin_right = 256.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 256, 128 )
+rect_clip_content = true
+theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 5 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vsplit" type="VSplitContainer" parent="."]
+margin_right = 256.0
+margin_bottom = 128.0
+collapsed = true
+dragger_visibility = 2
+
+[node name="scroll" type="ScrollContainer" parent="vsplit"]
+margin_right = 256.0
+margin_bottom = 115.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 16 )
+
+[node name="messages" type="VBoxContainer" parent="vsplit/scroll"]
+margin_right = 256.0
+margin_bottom = 115.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+custom_constants/separation = -3
+alignment = 2
+
+[node name="entry" type="PanelContainer" parent="vsplit"]
+margin_top = 115.0
+margin_right = 256.0
+margin_bottom = 128.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+custom_styles/panel = SubResource( 1 )
+
+[node name="hbox" type="HBoxContainer" parent="vsplit/entry"]
+margin_right = 256.0
+margin_bottom = 13.0
+custom_constants/separation = 0
+
+[node name="symbol" type="Label" parent="vsplit/entry/hbox"]
+margin_right = 18.0
+margin_bottom = 13.0
+text = " > "
+
+[node name="line" type="LineEdit" parent="vsplit/entry/hbox"]
+margin_left = 18.0
+margin_right = 256.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+custom_styles/read_only = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+caret_blink = true
+caret_blink_speed = 0.5

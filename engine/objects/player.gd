@@ -28,3 +28,6 @@ func loop_controls():
 	movedir.x = -int(Input.is_action_pressed("ui_left")) + int(Input.is_action_pressed("ui_right"))
 	movedir.y = -int(Input.is_action_pressed("ui_up")) + int(Input.is_action_pressed("ui_down"))
 
+# NETWORK #
+func update_network_master():
+	set_network_master(int(name))

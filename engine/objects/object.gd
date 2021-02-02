@@ -7,11 +7,13 @@ var myself = self
 var sprite : Sprite
 var anim : AnimationPlayer
 var collision : CollisionShape2D
+var tween : Tween
 
 # State Machine
 export var current_state = "Spawn"
 export var states = {}
 var triggers = [] # [[connecter, name, func], [connecter, name, func], ...]
+signal state_changed
 
 export var flags = []
 export var variables = {} ### CURRENTLY CUSTOM VARIABLES ONLY SUPPORT ACTIONS NOT TRIGGERS ###
@@ -19,14 +21,25 @@ export var variables = {} ### CURRENTLY CUSTOM VARIABLES ONLY SUPPORT ACTIONS NO
 var home_position = position
 var home_zone = null
 
-signal state_changed
+var network_position = Vector2(0,0) setget position_changed
+var network_animation = "idleDown" setget animation_changed
+
+# Networking
+export(Dictionary) var update_properties = {}
+export(Dictionary) var enter_properties = {}
 
 func _ready():
 	hide()
 	add_to_group("object")
 	
+	var _player_list_received = Network.connect("player_list_received", self, "update_network_master")
+	if Network.mode != Network.MODE.SP:
+		update_network_master()
+	var _tick = Network.tick_timer.connect("timeout", self, "network_tick")
+	
 	sprite = get_node("sprite")
 	anim = get_node("anim")
+	tween = get_node("tween")
 	if has_node("collision"):
 		collision = get_node("collision")
 	
@@ -42,11 +55,19 @@ func _ready():
 	show()
 
 func process_flags():
-	pass
+	if flags.has("ClientSide"):
+		add_to_group("clientside")
+	if flags.has("ForceSync"):
+		add_to_group("forcesync")
 
 # STATE MACHINE
 func _physics_process(_delta):
-	actions()
+	match Network.mode:
+		Network.MODE.SP:
+			actions()
+		Network.MODE.CLIENT, Network.MODE.SERVER:
+			if is_network_master() || is_in_group("clientside"):
+				actions()
 
 func actions():
 	for action in states[current_state]["actions"]:
@@ -62,6 +83,9 @@ func actions():
 		callv(function, parameters)
 
 func change_state(state):
+	if Network.mode != Network.MODE.SP && !is_network_master() && !is_in_group("clientside"):
+		return
+	
 	for child in get_children():
 		if child.is_in_group("state_node"):
 			child.queue_free()
@@ -95,9 +119,11 @@ func change_state_check_group(node, p): # p[0] = group, p[1] = state
 func anim_play(animation):
 	if anim.current_animation != animation:
 		anim.play(animation)
+	network_animation = animation
 
 func anim_dir_play(animation):
 	var newanim = str(animation, get("spritedir"))
+	network_animation = newanim
 	if !anim.has_animation(newanim):
 		if get("spritedir") in ["Left", "Right"]:
 			newanim = str(animation, "Side")
@@ -111,7 +137,8 @@ func delete():
 	queue_free()
 
 func change_map(map, entrance):
-	Client.change_map(map, entrance)
+	if Network.mode == Network.MODE.SP:
+		Client.change_map(map, entrance)
 
 # TRIGGERS #
 func trigger_anim_finished(trigger, _state):
@@ -163,3 +190,43 @@ func random_direction():
 			return Vector2.UP
 		3:
 			return Vector2.DOWN
+
+# NETWORK #
+func update_network_master():
+	if Client.current_map == null:
+		yield(Client, "map_changed")
+	set_network_master(int(Network.map_hosts[Client.current_map.name]))
+	change_state(current_state)
+
+func network_tick():
+	if (Network.is_map_host() || is_in_group("forcesync")) && is_network_master():
+		sync_update_properties()
+
+func sync_update_properties():
+	for key in update_properties.keys():
+		update_properties[key] = get(str(key))
+	for peer in Network.map_peers:
+		rpc_id(peer, "_receive_update", update_properties)
+
+remote func _receive_update(properties):
+	for key in properties.keys():
+		set(key, properties[key])
+
+func position_changed(value):
+	network_position = value
+	var _interpolate = tween.interpolate_property(self, "position", position, network_position, Network.tick_timer.wait_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	var _start = tween.start()
+
+func animation_changed(value):
+	network_animation = value
+	if !anim.has_animation(network_animation):
+		if get("spritedir") in ["Left", "Right"]:
+			network_animation = network_animation.replace(get("spritedir"), "Side")
+	if anim.current_animation != network_animation:
+		anim.play(network_animation)
+
+
+
+
+
+

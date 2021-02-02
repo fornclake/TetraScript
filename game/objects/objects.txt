@@ -1,9 +1,9 @@
 player Player {
 	Health 3
 	Speed 70
-	Damage 0
 	Size 4.5, 6
 	SpriteSheet "objects/key", 6, 8
+	+ForceSync
 	States {
 		Spawn:
 			change_state("Default")
@@ -183,14 +183,15 @@ tile Exit {
 	Map "dungeon"
 	Entrance "entrance"
 	+NoCollision
+	+ClientSide
 	States {
 		Spawn:
 			anim_play("default")
 			trigger timer(0.1) state Overlap
 		Overlap:
-			trigger object_exited(4,player) state Active
+			trigger object_exited(1,player) state Active
 		Active:
-			trigger object_entered(4,player) state Entered
+			trigger object_entered(1,player) state Entered
 		Entered:
 			change_map(Map,Entrance)
 	}

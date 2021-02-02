@@ -26,6 +26,8 @@ const DEFAULT_STATES = {
 func _ready():
 	add_to_group("entity")
 	collision = get_node("collision")
+	update_properties["network_position"] = position
+	update_properties["network_animation"] = anim.assigned_animation
 	if !sprite.material:
 		sprite.material = ShaderMaterial.new()
 		sprite.material.set_shader(preload("res://engine/gameplay/shaders/entity.shader"))
@@ -52,6 +54,7 @@ func use_weapon(path : String):
 func loop_movement(spd=speed):
 	var motion = movedir.normalized() * spd
 	motion = myself.move_and_slide(motion)
+	network_position = position
 
 func loop_spritedir():
 	match movedir:
