@@ -7,8 +7,6 @@ func stop_update():
 	$update.stop()
 
 func update():
-	hide()
-	return
 	$fps.text = str("FPS: ", Engine.get_frames_per_second())
 	$map.text = str("Map: ", Client.current_map.name)
 	$zone.text = str("Zone: ", Client.get_current_zone().name)

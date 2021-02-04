@@ -9,6 +9,9 @@ func _ready():
 	if Client.current_map == null: # move later
 		Client.current_map = self
 	
+	if !has_node(entrance):
+		entrance = "entrance"
+	
 	var _map_peers_updated = Network.connect("map_peers_updated", self, "update_puppets")
 	Network.map_peers = []
 	
